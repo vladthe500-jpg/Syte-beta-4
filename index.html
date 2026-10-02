@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080a0d">
+<title>РМП — Военный комиссариат</title>
+<meta name="description" content="Информационный сайт Роты молодого пополнения. Лекция, присяга, огневая и строевая подготовка.">
+<style>
+:root{
+  --bg:#050b16; --panel:#091426; --panel2:#0d1a2e; --text:#eef5ff;
+  --muted:#91a4bb; --line:rgba(145,185,230,.14); --accent:#4da3ff;
+  --accent2:#8ac8ff; --deep:#071122; --shadow:0 28px 80px rgba(0,12,35,.58);
+  --radius:24px; --nav:76px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 82% 4%,rgba(49,132,226,.16),transparent 27%),radial-gradient(circle at 5% 60%,rgba(18,73,145,.12),transparent 30%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:100;width:min(1180px,calc(100% - 28px));height:var(--nav);display:flex;align-items:center;gap:18px;padding:0 16px;background:rgba(5,14,29,.78);border:1px solid rgba(120,176,235,.16);border-radius:22px;backdrop-filter:blur(20px);box-shadow:0 12px 40px rgba(0,0,0,.28);transition:top .35s ease,height .35s ease,background .35s ease,box-shadow .35s ease,border-color .35s ease}.nav.scrolled{top:8px;height:64px;background:rgba(4,12,26,.95);border-color:rgba(77,163,255,.34);box-shadow:0 16px 50px rgba(0,15,40,.58)}
+.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+.logo{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#8ac8ff,#2477c5);color:#06111f;box-shadow:0 0 28px rgba(183,255,60,.2)}
+.logo svg{width:23px}
+.navlinks{margin-left:auto;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}.navlinks::-webkit-scrollbar{display:none}
+.navlinks a{position:relative;flex:0 0 auto;padding:10px 12px;border-radius:12px;color:#a9bbd0;font-size:14px;transition:color .25s ease,background .25s ease,transform .25s ease}
+.navlinks a:after{content:"";position:absolute;left:12px;right:12px;bottom:5px;height:2px;border-radius:9px;background:var(--accent);transform:scaleX(0);transform-origin:center;transition:transform .25s ease}
+.navlinks a:hover{transform:translateY(-1px)}
+.navlinks a:hover:after,.navlinks a.active:after{transform:scaleX(1)}
+.navlinks a.active{color:#fff;background:rgba(255,255,255,.06)}
+.menu{display:none;margin-left:auto;border:1px solid var(--line);background:transparent;color:#fff;border-radius:12px;padding:9px 11px}
+.hero{position:relative;min-height:100vh;padding:150px 24px 70px;display:grid;align-items:center;isolation:isolate;background-image:linear-gradient(90deg,rgba(4,13,28,.96) 0%,rgba(4,15,31,.78) 43%,rgba(4,13,28,.38) 100%),url("assets/hero-1.jpeg");background-size:cover;background-position:center 35%} .hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(2,8,18,.3),var(--bg) 96%)}
+.wrap{width:min(1180px,100%);margin:auto}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);background:rgba(255,255,255,.03);padding:8px 12px;border-radius:999px;color:#c6ced6;font-size:13px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 15px var(--accent)}
+h1{font-size:clamp(46px,7vw,88px);line-height:.98;letter-spacing:-.055em;margin:22px 0}
+.grad{background:linear-gradient(120deg,#fff 15%,#63b4ff 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:680px;color:var(--muted);font-size:18px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 18px;border-radius:14px;border:1px solid var(--line);transition:.2s}
+.btn.primary{background:var(--accent);color:#0a0e08;font-weight:800}
+.btn:hover{transform:translateY(-2px)}
+.hero-art{position:relative;min-height:490px;border:1px solid rgba(155,205,255,.18);border-radius:36px;overflow:hidden;box-shadow:var(--shadow);background:#081426}
+.hero-slider{isolation:isolate}
+.hero-slides,.hero-slide{position:absolute;inset:0}
+.hero-slide{opacity:0;transform:scale(1.035);transition:opacity 1.1s ease,transform 6s ease;pointer-events:none}
+.hero-slide.active{opacity:1;transform:scale(1);z-index:1}
+.hero-slide img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.hero-slide:nth-child(2) img{object-position:center 42%}
+.hero-slider-shade{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(3,10,22,.05) 20%,rgba(3,10,22,.08) 42%,rgba(3,10,22,.86) 100%),linear-gradient(90deg,rgba(3,10,22,.16),transparent 55%);pointer-events:none}
+.slider-caption{position:absolute;left:28px;right:28px;bottom:52px;z-index:4;display:flex;flex-direction:column;gap:4px;text-shadow:0 3px 20px rgba(0,0,0,.7)}
+.slider-caption-kicker{font-size:10px;letter-spacing:.16em;font-weight:800;color:#9ecfff}
+.slider-caption strong{font-size:clamp(19px,2.2vw,28px);line-height:1.05;color:#fff}
+.slider-caption span:last-child{font-size:12px;color:#b8c7d8}
+.slider-dots{position:absolute;left:28px;bottom:24px;z-index:5;display:flex;gap:7px}
+.slider-dot{width:7px;height:7px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.38);cursor:pointer;transition:.25s;box-shadow:0 0 0 1px rgba(255,255,255,.08)}
+.slider-dot.active{width:24px;border-radius:8px;background:#63b4ff}
+.slider-progress{position:absolute;left:0;right:0;bottom:0;height:2px;z-index:6;background:rgba(255,255,255,.08);overflow:hidden}
+.slider-progress span{display:block;width:0;height:100%;background:#63b4ff}
+.slider-progress.playing span{animation:sliderProgress 5s linear forwards}
+@keyframes sliderProgress{from{width:0}to{width:100%}}
+.military-card{position:absolute;left:8%;right:8%;top:50%;transform:translateY(-50%) rotate(-2deg);padding:18px;border:1px solid rgba(160,205,255,.32);border-radius:24px;background:linear-gradient(145deg,rgba(17,35,58,.94),rgba(5,15,29,.96));box-shadow:0 35px 80px rgba(0,0,0,.58),inset 0 1px 0 rgba(255,255,255,.06);backdrop-filter:blur(12px);overflow:hidden;z-index:3}
+.military-card:before{content:"";position:absolute;inset:-30%;background:radial-gradient(circle at 15% 20%,rgba(77,163,255,.2),transparent 28%),radial-gradient(circle at 90% 80%,rgba(77,163,255,.1),transparent 32%);pointer-events:none}
+.military-card-top,.military-card-bottom{position:relative;display:flex;align-items:center;justify-content:space-between;color:#cfe4ff;font-size:10px;font-weight:800;letter-spacing:.12em}
+.military-card-top{padding:0 3px 13px;border-bottom:1px solid rgba(148,202,255,.15)}
+.military-card-top span{padding:5px 8px;border:1px solid rgba(148,202,255,.22);border-radius:8px;color:#6eb6ff}
+.military-card-body{position:relative;display:grid;grid-template-columns:38% 1fr;gap:17px;padding:17px 0}
+.military-photo{border-radius:13px;overflow:hidden;border:1px solid rgba(180,220,255,.18);background:#102238;aspect-ratio:4/5;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.military-photo svg{display:block;width:100%;height:100%;object-fit:cover}
+.military-info{padding:2px 0}.card-label{font-size:9px;color:#63b4ff;font-weight:800;letter-spacing:.12em;margin-bottom:7px}.military-info h3{font-size:18px;line-height:1.1;margin:0 0 13px;letter-spacing:-.02em;color:#f1f6ff}.info-line{display:flex;flex-direction:column;gap:1px;padding:7px 0;border-top:1px solid rgba(148,202,255,.11)}.info-line span{font-size:9px;color:#8299b3}.info-line b{font-size:11px;color:#e7f0fb}.serial{margin-top:8px;font-size:9px;color:#6e8299;letter-spacing:.1em}.military-card-bottom{padding-top:11px;border-top:1px solid rgba(148,202,255,.15);font-size:8px;color:#7f9abb}.military-card-bottom span{white-space:nowrap}
+
+.silhouette{display:none;position:absolute;inset:45px;place-items:center}
+.silhouette svg{width:86%;height:86%;filter:drop-shadow(0 30px 35px rgba(0,0,0,.6))}
+.badge{z-index:4;position:absolute;right:25px;bottom:24px;padding:10px 13px;border:1px solid var(--line);border-radius:13px;background:rgba(6,8,11,.7);backdrop-filter:blur(10px);font-size:12px;color:#aeb7c0}
+section{padding:105px 24px;scroll-margin-top:100px}
+
+.photo-section{position:relative;isolation:isolate;overflow:hidden;background:#061224}
+.photo-section::before{content:"";position:absolute;inset:0;z-index:-2;background-image:var(--section-image);background-size:cover;background-position:center;transform:scale(1.02);filter:saturate(.82) contrast(1.05)}
+.photo-section::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(4,13,28,.94) 0%,rgba(5,16,34,.78) 34%,rgba(4,12,26,.94) 100%)}
+#lecture{--section-image:url("https://images.unsplash.com/photo-1786024025577-02a0c371f392?auto=format&fit=crop&fm=jpg&q=82&w=2200")}
+#oath{--section-image:url("https://images.unsplash.com/photo-1777058984347-d6bd99b3fb7d?auto=format&fit=crop&fm=jpg&q=82&w=2200")}
+#fire{--section-image:url("https://images.unsplash.com/photo-1748443992821-913d6166c18b?auto=format&fit=crop&fm=jpg&q=82&w=2200")}
+#drill{--section-image:url("https://images.unsplash.com/photo-1749469400908-36607e6b8885?auto=format&fit=crop&fm=jpg&q=82&w=2200")}
+.section-photo-label{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;padding:8px 12px;border:1px solid rgba(148,202,255,.18);border-radius:999px;background:rgba(4,14,28,.55);backdrop-filter:blur(10px);color:#c8dfff;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:34px}
+.kicker{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+h2{font-size:clamp(34px,5vw,58px);line-height:1.05;letter-spacing:-.04em;margin:8px 0}
+.section-desc{max-width:620px;color:var(--muted);margin:0}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{position:relative;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));border:1px solid var(--line);border-radius:var(--radius);padding:27px;overflow:hidden}
+.card:after{content:"";position:absolute;width:160px;height:160px;right:-80px;top:-80px;background:rgba(77,163,255,.08);border-radius:50%;filter:blur(5px)}
+.card h3{font-size:24px;margin:0 0 8px}.num{color:var(--accent);font-weight:800;font-size:13px}.card p{color:#b1bbc5;margin:0 0 17px}
+details{border-top:1px solid var(--line);padding:14px 0}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";color:var(--accent);font-size:20px}
+details[open] summary:after{content:"−"}
+.prose{color:#c1c9d1}
+.prose h3{font-size:20px;margin:28px 0 8px;color:#fff}.prose p{margin:9px 0}.prose ul,.prose ol{padding-left:23px}.prose li{margin:6px 0}
+.quote{border-left:3px solid var(--accent);background:rgba(183,255,60,.045);padding:16px 18px;border-radius:0 14px 14px 0;margin:15px 0;color:#e5ebef}
+.command{font-weight:900;letter-spacing:.04em;color:#fff}
+.flow{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.flow span{padding:9px 12px;border:1px solid var(--line);border-radius:12px;background:#081426;color:#d7dee5;font-size:13px}
+.tablet{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:25px}
+.topbtn{position:fixed;right:22px;bottom:22px;width:45px;height:45px;border-radius:14px;border:1px solid var(--line);background:rgba(13,17,22,.85);color:#fff;z-index:90;opacity:0;pointer-events:none;transition:.2s}
+.topbtn.show{opacity:1;pointer-events:auto}
+footer{border-top:1px solid var(--line);padding:35px 24px;color:#7f8993;text-align:center;font-size:13px}
+@media(max-width:850px){
+  .nav{height:58px;top:8px;width:calc(100% - 16px);padding:0 8px;border-radius:18px}.nav.scrolled{top:5px;height:56px}.brand{display:none}.navlinks{width:100%;margin:0;gap:2px;overflow-x:auto;overflow-y:hidden}.navlinks a{padding:9px 12px;font-size:12px;border-radius:10px}.navlinks a:after{left:10px;right:10px;bottom:3px}.menu{display:none!important}
+  .hero{padding-top:110px}.hero-grid{grid-template-columns:1fr;gap:35px}.hero-art{min-height:370px}
+  .cards{grid-template-columns:1fr}.section-head{display:block}.section-desc{margin-top:14px}
+}
+
+@media(max-width:520px){
+  .military-card{left:6%;right:6%;padding:13px;border-radius:20px}
+  .military-card-body{grid-template-columns:36% 1fr;gap:12px;padding:13px 0}
+  .military-info h3{font-size:14px}.info-line{padding:5px 0}.info-line b{font-size:9px}.info-line span{font-size:7px}.card-label{font-size:7px}.military-card-bottom{font-size:6px}.military-card-top{font-size:7px}
+}
+@media(max-width:520px){
+  .hero,section{padding-left:16px;padding-right:16px}.hero{padding-top:110px}.hero-art{min-height:300px;border-radius:25px}.slider-caption{left:18px;right:18px;bottom:43px}.slider-dots{left:18px;bottom:20px}.silhouette{inset:25px}
+  h1{font-size:52px}.lead{font-size:16px}.card{padding:20px;border-radius:20px}
+}
+
+.drill-tabs{display:flex;gap:10px;margin:0 0 22px;flex-wrap:wrap}
+.drill-tab{appearance:none;border:1px solid var(--line);background:rgba(255,255,255,.035);color:#bfc8d2;padding:12px 18px;border-radius:14px;font:inherit;font-weight:800;cursor:pointer;transition:.2s}
+.drill-tab:hover{transform:translateY(-1px);border-color:rgba(99,180,255,.45);color:#fff}
+.drill-tab.active{background:var(--accent);border-color:var(--accent);color:#0a0e08;box-shadow:0 10px 30px rgba(99,180,255,.14)}
+.drill-panel[hidden]{display:none!important}
+.drill-panel{animation:drillFade .22s ease}
+@keyframes drillFade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:520px){.drill-tabs{display:grid;grid-template-columns:1fr 1fr}.drill-tab{width:100%;padding:11px 8px;font-size:13px}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#home"><span class="logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4.5 6v5.4c0 4.8 3.1 8.1 7.5 9.6 4.4-1.5 7.5-4.8 7.5-9.6V6L12 3Z"/><path d="m8 11 2.3 2.3L16 8"/></svg></span><span>РМП / ВК</span></a>
+  <nav class="navlinks" id="navlinks">
+    <a href="#home">Главная</a><a href="#lecture">Лекция</a><a href="#oath">Присяга</a><a href="#fire">Огневая</a><a href="#drill">Строевая</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+<div class="wrap hero-grid">
+  <div>
+    <div class="eyebrow"><span class="dot"></span> Рота молодого пополнения · Военный комиссариат</div>
+    <h1>Армия.<br><span class="grad">Служба.</span><br>Подготовка.</h1>
+    <p class="lead">Добро пожаловать на информационный портал Военного комиссариата. Здесь собраны основные материалы для военнослужащих Роты молодого пополнения: порядок службы, дисциплина, присяга, огневая и строевая подготовка.</p>
+    <p class="lead" style="font-size:15px;margin-top:14px">РМП — первый этап подготовки, где формируются базовые навыки, командное взаимодействие и понимание требований военной службы.</p>
+    <div class="actions"><a class="btn primary" href="#lecture">Перейти к материалам ↓</a></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:24px">
+      <span class="eyebrow">ВОЕННЫЙ КОМИССАРИАТ</span>
+      <span class="eyebrow">РМП / ОБУЧЕНИЕ</span>
+      <span class="eyebrow">4 РАЗДЕЛА</span>
+    </div>
+  </div>
+  <div class="hero-art hero-slider" aria-label="Фотографии Роты молодого пополнения">
+    <div class="hero-slides">
+      <div class="hero-slide active"><img src="assets/hero-1.jpeg" alt="Рота молодого пополнения" loading="eager"></div>
+      <div class="hero-slide"><img src="assets/hero-2.jpeg" alt="Военная подготовка" loading="lazy"></div>
+      <div class="hero-slide"><img src="assets/hero-3.jpeg" alt="Строевая подготовка" loading="lazy"></div>
+      <div class="hero-slide"><img src="assets/hero-4.jpeg" alt="Военная служба" loading="lazy"></div>
+      <div class="hero-slide"><img src="assets/hero-5.jpeg" alt="Построение" loading="lazy"></div>
+    </div>
+    <div class="hero-slider-shade"></div>
+    <div class="slider-caption">
+      <span class="slider-caption-kicker">РМП · ВОЕННЫЙ КОМИССАРИАТ</span>
+      <strong>Служба. Подготовка. Дисциплина.</strong>
+      <span>Фотографии подразделения</span>
+    </div>
+    <div class="slider-dots" aria-label="Навигация по фотографиям">
+      <button class="slider-dot active" type="button" aria-label="Фото 1"></button>
+      <button class="slider-dot" type="button" aria-label="Фото 2"></button>
+      <button class="slider-dot" type="button" aria-label="Фото 3"></button>
+      <button class="slider-dot" type="button" aria-label="Фото 4"></button>
+      <button class="slider-dot" type="button" aria-label="Фото 5"></button>
+    </div>
+    <div class="slider-progress"><span></span></div>
+  </div>
+</div>
+</section>
+
+<section id="lecture" class="photo-section">
+<div class="wrap">
+<div class="section-head"><div><div class="kicker">01 / Основной материал</div><h2>Лекция</h2></div><p class="section-desc">Вводное занятие для бойцов Роты молодого пополнения: дисциплина, субординация, форма, поведение в строю и порядок увольнительного времени.</p></div>
+  <div class="tablet prose">
+    <p><strong>Бойцы, всех приветствую!</strong></p>
+    <p>В данный момент вы находитесь в подразделении Роты молодого пополнения (РМП).</p>
+    <p>Основная задача РМП — подготовить вас к дальнейшему прохождению службы в других подразделениях. Здесь вы будете развивать личные и командные навыки, изучать и соблюдать Устав ВС РО, субординацию и дисциплину, а также осваивать караульную службу, строевую подготовку и правила обращения с оружием.</p>
+    <details open><summary>1. Устав, дисциплина и субординация</summary><p>Каждый военнослужащий обязан соблюдать Устав, дисциплину и субординацию.</p><p>За нарушение военнослужащий несёт наказание. Если нарушение происходит в строю, наказанию подвергается весь строй.</p></details>
+    <details><summary>2. Военная форма и знаки различия</summary><p>Каждый военнослужащий обязан носить форму, соответствующую его подразделению, а также иметь при себе воинские погоны, соответствующие его званию.</p><p>⚠️ Форма одежды и знаки различия должны соответствовать установленным требованиям и занимаемой должности.</p></details>
+    <details><summary>3. Обращение из строя</summary><p>Если вам необходимо обратиться к кому-либо, находясь в строю, используйте следующую форму:</p><div class="quote">«Товарищ [звание/фамилия того к кому хотите обратиться], разрешите обратиться из строя. Обращается [ваше звание/фамилия]».</div><p>Каждый боец сейчас попробует правильно обратиться из строя.</p><p><strong>Важно:</strong> если рядом с военнослужащим, к которому вы хотите обратиться, находится человек с более высоким званием, сначала необходимо получить разрешение на обращение у старшего по званию, и только после этого обратиться к нужному вам военнослужащему.</p></details>
+    <details><summary>4. Вольная лексика</summary><p>В ВС РО запрещено использовать вольные ответы и обращения, такие как: «да», «нет», «можно» и другие подобные слова.</p><ul><li>«Так точно» — вместо «да»;</li><li>«Никак нет» — вместо «нет»;</li><li>«Разрешите» — при обращении за разрешением.</li></ul></details>
+    <details><summary>5. Правила поведения в строю</summary><p>В строю запрещены вольные движения, разговоры и самостоятельные перестроения.</p><p>Все действия выполняются только по команде военнослужащего, руководящего построением.</p></details>
+    <details><summary>6. Приветствие старшего по званию</summary><p>Если к построению подходит военнослужащий, имеющий более высокое звание, вы обязаны поприветствовать его словами:</p><div class="quote">«Здравия желаю!»</div><p>При этом воинское приветствие рукой в строю не отдаётся.</p></details>
+    <details><summary>7. Увольнительное время</summary><p>Каждый военнослужащий имеет право на увольнительное время продолжительностью до 1 часа в день до достижения 3-го порядкового звания — младшего сержанта. После вы имеете право покидать ВЧ после окончания рабочего времени.</p><p>Для получения увольнительного времени необходимо заранее заполнить соответствующую заявку. После её одобрения военнослужащий получает право покинуть территорию части.</p><p>⏱️ Максимальная продолжительность увольнительного времени — 1 час.</p></details>
+    <details><summary>8. Экскурс по спец-связи</summary><p>В специальной связи вам необходимо найти раздел «Рота молодого пополнения». Именно здесь размещается вся основная информация, необходимая для прохождения службы и дальнейшего повышения.</p><p>В разделе «Система прохождения» находится ссылка на специальный сайт, где собрана вся необходимая информация для успешного прохождения этапов и повышения.</p><p>В разделе «Новости» регулярно публикуются объявления о проведении различных мероприятий и занятий, прохождение которых может быть необходимо для вашего дальнейшего повышения.</p><p>Также обращайте внимание на раздел «Важное». В нём публикуются значимые изменения, нововведения, обновления и другая информация, которую необходимо знать каждому военнослужащему.</p><p>Рекомендую регулярно проверять все разделы, чтобы не пропустить важные объявления, мероприятия или изменения в системе прохождения службы.</p></details>
+  </div>
+</div>
+</section>
+
+<section id="oath" class="photo-section">
+<div class="wrap">
+<div class="section-head"><div><div class="kicker">02 / Торжественная часть</div><h2>Присяга</h2></div><p class="section-desc">Готовые тексты для речи перед присягой, отписки после принятия и заключительного обращения.</p></div>
+<div class="cards">
+  <article class="card"><div class="num">01 — РЕЧЬ</div><h3>Речь перед присягой</h3><div class="prose"><p>«Товарищи солдаты! Принятие Военной присяги — это почётная и ответственная обязанность, которую государство возлагает на каждого военнослужащего. В этот день вы торжественно клянетесь на верность своему Отечеству.</p><p>Вы обязуетесь свято соблюдать Конституцию России, строго выполнять требования воинских уставов, приказы командиров и начальников. Вы клянетесь достойно исполнять воинский долг, мужественно защищать свободу, независимость и конституционный строй России, её народ и Отечество.</p><p>Пусть эта клятва станет твёрдым основанием вашей службы. Желаю вам выдержки, дисциплины и успехов в освоении воинского мастерства.»</p></div></article>
+  <article class="card"><div class="num">02 — ОТПИСКА</div><h3>После присяги</h3><div class="quote">/do Рядовой Иванов успешно торжественную присягу принял.</div></article>
+</div>
+<div class="tablet prose" style="margin-top:18px"><h3>Речь после присяги</h3>
+<p>Бойцы!</p><p>Сегодня для каждого из вас закончился один этап и начался другой. Несколько минут назад вы произнесли слова присяги. И с этого момента вы здесь уже не просто новобранцы.</p><p>Теперь вы — военнослужащие Воор Сил.</p><p>Помните: присяга — это не просто текст, который нужно один раз произнести перед строем. Это обещание. Обещание своим товарищам, командованию, гражданам страна и, прежде всего, самому себе.</p><p>С сегодняшнего дня каждый ваш поступок будет говорить не только о вас лично, но и о подразделении, форму которого вы носите.</p><p>Впереди вас ждёт многое. Учения, тренировки, караулы, приказы, сложные задачи. Иногда будет тяжело. Иногда вы будете ошибаться. Но именно здесь вы должны научиться отвечать за свои решения, работать плечом к плечу со своими товарищами и никогда не оставлять человека, который стоит рядом с вами в строю.</p><p>Запомните главное: звание можно получить, форму можно надеть, устав можно выучить. Но уважение товарищей и право называться настоящим бойцом необходимо заслужить своими действиями.</p><p>Не бойтесь спрашивать, если чего-то не знаете. Учитесь у старших по званию. Помогайте тем, кто слабее или менее опытен. Соблюдайте субординацию, дисциплину и никогда не забывайте, зачем вы сюда пришли.</p><p>Посмотрите на людей, которые стоят сейчас рядом с вами. Возможно, уже совсем скоро именно от одного из них будет зависеть ваша безопасность, а от вас — его.</p><p>Поэтому с этого дня вы должны быть не просто группой людей в одинаковой форме.</p><p><strong>Вы должны стать подразделением.</strong></p><p>Я поздравляю каждого из вас с принятием военной присяги.</p><p>Носите эту форму достойно. Не позорьте своё подразделение. Не подводите своих товарищей.</p><p><strong>Служите с честью!</strong></p>
+<h3>Текст присяги</h3><div class="quote">«Я, (фамилия, имя, отчество), торжественно присягаю на верность своему Отечеству. Клянусь свято соблюдать Конституцию России, строго выполнять требования воинских уставов, приказы командиров и начальников. Клянусь достойно исполнять воинский долг, мужественно защищать свободу, независимость и конституционный строй России, народ и Отечество».</div>
+</div>
+</div>
+</section>
+
+<section id="fire" class="photo-section">
+<div class="wrap">
+<div class="section-head"><div><div class="kicker">03 / Практическое занятие</div><h2>Огневая подготовка</h2></div><p class="section-desc">Структура занятия: приветствие, теоретическая часть, практическая часть и заключение.</p></div>
+<div class="tablet prose">
+<h3>I. Вступление и приветствие</h3><p class="command">— Личный состав, построиться в одну шеренгу!<br>— Равняйсь!<br>— Смирно!<br>— Здравствуйте, бойцы!</p><p>Личный состав: «Здравия желаем, товарищ инструктор!»</p><p>Инструктор: «Вольно.»</p><p>— Сегодня проводится занятие по огневой подготовке.</p><p>— В ходе занятия мы рассмотрим основные правила обращения с оружием, требования безопасности и порядок выполнения практического упражнения.</p><p>— Прошу внимательно слушать команды и соблюдать дисциплину на протяжении всего занятия.</p>
+<h3>II. Теоретическая часть</h3><p>Огневая подготовка — это комплекс мероприятий, направленных на обучение военнослужащего правильному и безопасному обращению с оружием, а также на совершенствование навыков его применения.</p><p>Во время проведения стрельб военнослужащий обязан соблюдать установленный порядок и выполнять команды руководителя занятия.</p><p>Любые действия с оружием выполняются только в предусмотренном порядке. Запрещается самостоятельно начинать выполнение упражнения, покидать своё место или совершать действия, которые не были предусмотрены командой инструктора.</p><p>Особое внимание необходимо уделять дисциплине. На огневом рубеже каждый военнослужащий должен находиться на своём месте, внимательно следить за командами руководителя и не отвлекать других участников занятия.</p><p>После завершения упражнения необходимо прекратить выполнение всех действий и ожидать дальнейшей команды.</p><p>Основная задача военнослужащего во время огневой подготовки — внимательно выполнять поставленные задачи, соблюдать установленный порядок и обеспечивать безопасность окружающих.</p>
+<h3>III. Практическая часть</h3><p>— Теоретическая часть окончена. Переходим к практической части занятия.</p><p class="command">— Личный состав, приготовиться к перемещению на огневой рубеж.<br>— В колонну по одному становись!<br>— Шагом марш!<br>— Стой!<br>— Занять свои места.</p><p>— Личный состав, внимание!</p><p>— Перед началом упражнения напоминаю: все действия выполняются исключительно по моей команде. Самостоятельно начинать выполнение упражнения запрещается.</p><p class="command">— К выполнению упражнения приготовиться!<br>— Приготовиться!<br>— Огонь!<br>— Прекратить огонь!<br>— Ожидать дальнейших указаний.</p><p>— Упражнение окончено.</p><p>— Оружие привести в установленное безопасное состояние.</p><p>— После моей команды покинуть огневой рубеж.</p><p class="command">— Покинуть огневой рубеж!</p>
+<h3>IV. Заключение</h3><p class="command">— Личный состав, построиться в одну шеренгу!<br>— Равняйсь!<br>— Смирно!</p><p>— Сегодня мы провели занятие по огневой подготовке.</p><p>— В ходе занятия была рассмотрена теория, основные требования при обращении с оружием и порядок выполнения практического упражнения.</p><p>— При проведении подобных занятий главное — соблюдать дисциплину, внимательно слушать руководителя и чётко выполнять его команды.</p><p>— На этом занятие окончено.</p><p>— Вольно!</p><p>— Спасибо за службу. Можете быть свободны.</p>
+</div></div>
+</section>
+
+<section id="drill" class="photo-section">
+<div class="wrap">
+<div class="section-head"><div><div class="kicker">04 / Строевая подготовка</div><h2>Строевая</h2></div><p class="section-desc">Рота молодого пополнения. Теория и практическая отработка по принципу «от простого → к сложному».</p></div>
+<div class="drill-tabs" role="tablist" aria-label="Материалы по строевой подготовке">
+<button class="drill-tab active" type="button" role="tab" aria-selected="true" aria-controls="drill-lecture" data-target="lecture">📖 Лекция</button>
+<button class="drill-tab" type="button" role="tab" aria-selected="false" aria-controls="drill-practice" data-target="practice">🎯 Практика</button>
+</div>
+<div id="drill-lecture"><div class="tablet prose drill-panel" data-panel="lecture">
+<h3>Тема</h3><p><strong>Основы строевой подготовки.</strong> Построение, равнение, расчёт, повороты, строевой шаг, остановка и перестроение в колонну по три.</p>
+<p><strong>Категория обучаемых:</strong> рота молодого пополнения.</p><p><strong>Основной принцип обучения:</strong> от простого к сложному.</p>
+<h3>1. Введение</h3><p>Строевая подготовка является одним из основных элементов подготовки военнослужащего. Её задача заключается не только в том, чтобы военнослужащие умели правильно выполнять отдельные строевые команды. Строевая подготовка воспитывает дисциплинированность, организованность, внимательность, способность быстро и одновременно выполнять распоряжения командира, а также умение действовать в составе подразделения.</p><p>При выполнении строевых приёмов необходимо помнить: команда должна выполняться быстро, чётко, одновременно и правильно. Каждый военнослужащий отвечает не только за правильность своих действий, но и за сохранение общего строя.</p><p>Сегодня мы будем двигаться от простых элементов к более сложным: построение; положение военнослужащего в строю; поправление и равнение; положение «смирно» и «вольно»; расчёт; повороты на месте; строевой шаг; остановка; выполнение неожиданных команд; перестроение в колонну по три.</p>
+<h3>2. Команда «СТАНОВИСЬ!»</h3><p>По этой команде военнослужащий должен быстро занять своё место в строю. В нашем случае каждый военнослужащий занимает место по установленным ориентирам — по клеткам.</p><ul><li>занять своё место;</li><li>соблюдать установленный интервал;</li><li>не выходить за границы своего места;</li><li>быть готовым к дальнейшему выполнению команд.</li></ul>
+<h3>3. Построение по клеткам</h3><p>Клетки используются как наглядный ориентир для первоначального обучения. Необходимо находиться по центру своей клетки, соблюдать интервал и не заходить на место другого военнослужащего. Если своё место уже занято правильно, сохраняем положение и ожидаем следующей команды.</p>
+<h3>4. «ПОПРАВИТЬСЯ!»</h3><p>После команды необходимо: 1) снять головной убор; 2) привести в порядок внешний вид и обмундирование; 3) надеть головной убор; 4) занять исходное положение; 5) ожидать следующую команду.</p>
+<h3>5. «РАВНЯЙСЬ!», «СМИРНО!», «ВОЛЬНО!»</h3><p><strong>«РАВНЯЙСЬ!»</strong> — повернуть голову в сторону правого плеча и выровняться относительно строя, сохраняя своё место.</p><p><strong>«СМИРНО!»</strong> — вернуть голову прямо, принять строевое положение, сохранять неподвижность и внимательно слушать дальнейшие команды.</p><p><strong>«ВОЛЬНО!»</strong> — разрешается ослабить одну ногу и стоять свободнее, не покидая своего места и сохраняя готовность к дальнейшим действиям.</p>
+<h3>6. Расчёт</h3><p>Команды: <span class="command">«На первый — второй, РАССЧИТАЙСЬ!»</span> или <span class="command">«На первый — второй — третий, РАССЧИТАЙСЬ!»</span>. Каждый военнослужащий по очереди чётко называет свой номер. Последний после своего номера выходит на шаг вперёд и докладывает: <span class="command">«РАСЧЁТ ОКОНЧЕН!»</span>, после чего возвращается на место.</p>
+<h3>7. Повороты на месте</h3><p class="command">«НАПРА-ВО!»<br>«НАЛЕ-ВО!»<br>«КРУ-ГОМ!»</p><p>Сначала повороты отрабатываются отдельно, затем команды подаются в случайной последовательности. Главное — внимательно слушать команду, выполнять её без задержки и сохранять общий строй.</p>
+<h3>8. Строевой шаг</h3><p class="command">«СТРОЕВЫМ ШАГОМ ПО ПЕРИМЕТРУ КВАДРАТА, ШАГОМ — МАРШ!»</p><p>При движении контролируются величина шага, корпус, руки, взгляд, дистанция и интервал. Особое внимание уделяется углам маршрута и сохранению организованного строя.</p>
+<h3>9. Остановка</h3><p class="command">«СТОЙ!»</p><p>После остановки сохраняем свои места. При необходимости выполняем: <span class="command">«РАВНЯЙСЬ!» → «СМИРНО!»</span>.</p>
+<h3>10. Выполнение неожиданных команд</h3><p>Инструктор подаёт команды в неожиданной последовательности, например: <span class="command">«СТОЙ!» → «КРУ-ГОМ!» → «МАРШ!»</span>. Задача — не угадывать следующую команду, а внимательно слушать руководителя и точно выполнять поданную команду, сохраняя строй.</p>
+<h3>11. Перестроение в колонну по три</h3><p>После освоения предыдущих элементов личный состав строится в одну шеренгу. Затем выполняется движение по периметру до установленного места, остановка и построение перед руководителем.</p><p class="command">«НАПРА-ВО! По периметру квадрата, шагом — МАРШ!»<br>«СТОЙ!»<br>«НАПРА-ВО!»<br>«В одну шеренгу, передо мной, по линии — СТАНОВИСЬ!»</p><p>После построения: <span class="command">«ПОПРАВИТЬСЯ!» → «РАВНЯЙСЬ!» → «СМИРНО!»</span>.</p>
+<h3>12. Расчёт на первый, второй, третий</h3><p class="command">«На первый, второй, третий — РАССЧИТАЙСЬ!»</p><p>Третьи номера делают два шага вперёд, вторые — один шаг вперёд, первые остаются на месте.</p>
+<h3>13. Перестроение в колонну по три</h3><p class="command">«НАЛЕ-ВО!»<br>«В колонну по три — СТАНОВИСЬ!»</p><p>После перестроения: <span class="command">«ПОПРАВИТЬСЯ!» → «РАВНЯЙСЬ!» → «СМИРНО!»</span>. Проверяются расположение, интервалы, дистанция и равнение.</p>
+<h3>14. Вывод шеренг</h3><p class="command">«Первая шеренга, напра-ВО!»<br>«В исходное положение, в одну шеренгу — СТАНОВИСЬ!»</p><p>Аналогичные действия выполняются с остальными шеренгами до полного построения подразделения в одну шеренгу.</p>
+<h3>15. Основные ошибки</h3><ul><li>нарушение равнения;</li><li>нарушение интервала и дистанции;</li><li>преждевременное выполнение команды;</li><li>невнимательность;</li><li>нарушение строя при движении;</li><li>неправильное понимание команды «ВОЛЬНО!».</li></ul>
+<h3>16. Заключение</h3><p>Основное правило строевой подготовки — внимательно слушать команду, правильно понимать её содержание и выполнять одновременно с подразделением. После теоретической части переходим к практической отработке строевых приёмов — от простого к сложному.</p>
+</div></div>
+<div id="drill-practice" hidden><div class="tablet prose drill-panel" data-panel="practice">
+<h3>🪖 СТРОЕВАЯ ПОДГОТОВКА</h3>
+<p><strong>Рота молодого пополнения</strong></p>
+<p><strong>Принцип:</strong> от простого → к сложному.</p>
+<hr>
+<h3>01. «СТАНОВИСЬ!»</h3><p class="command">«СТАНОВИСЬ!»</p><p>Бойцы занимают свои места по клеткам.</p>
+<hr>
+<h3>02. ПОСТРОЕНИЕ ПО КЛЕТКАМ</h3><p><strong>Ваша ЗАДАЧА:</strong></p><ul><li>стоять по центру клетки;</li><li>не выходить за ее пределы;</li><li>соблюдать одинаковый интервал.</li></ul>
+<hr>
+<h3>03. «ПОПРАВИТЬСЯ!»</h3><p class="command">«ПОПРАВИТЬСЯ!»</p><p>При команде поправиться нужно:</p><ol><li>Снять головной убор.</li><li>Поправить внешний вид.</li><li>Надеть головной убор.</li><li>Ждать следующую команду.</li></ol>
+<hr>
+<h3>04. «РАВНЯЙСЬ!» → «СМИРНО!»</h3><p class="command">«РАВНЯЙСЬ!»<br>«СМИРНО!»<br>«ВОЛЬНО!»</p><ul><li>При команде <strong>РАВНЯЙСЬ</strong> — поворачиваем голову в сторону правого плеча.</li><li>При команде <strong>СМИРНО</strong> — смотрим прямо, стоим ровно и не шевелимся.</li><li>При команде <strong>ВОЛЬНО</strong> — ослабить ногу, стоять свободно, но при этом сохраняя своё место в строю.</li></ul>
+<hr>
+<h3>05. РАСЧЁТ</h3><p class="command">«На первый — второй, РАССЧИТАЙСЬ!»</p><p>Или:</p><p class="command">«На первый — второй — третий, РАССЧИТАЙСЬ!»</p><p>Каждый боец чётко называет свой номер.</p><p>Последний военнослужащий в строю, после произнесения своего порядкового номера, делает шаг вперёд из строя и чётко произносит: <span class="command">«РАСЧЁТ ОКОНЧЕН!»</span> После этого возвращается на своё место и занимает исходное положение в строю.</p>
+<hr>
+<h3>06. ПОВОРОТЫ</h3><p>Отработка по очереди:</p><p class="command">«НАПРА-ВО!»<br>«НАЛЕ-ВО!»<br>«КРУ-ГОМ!»</p><p>Сначала отдельно, затем в случайном порядке.</p>
+<hr>
+<h3>07. СТРОЕВОЙ ШАГ</h3><p class="command">«СТРОЕВЫМ ШАГОМ ПО ПЕРИМЕТРУ КВАДРАТА<br>ШАГОМ — МАРШ!»</p><p>Контролируем: шаг, корпус, руки, взгляд и дистанцию.</p><p><strong>Ваша задача:</strong></p><ul><li>держать строй;</li><li>сохранять дистанцию;</li><li>правильно проходить углы.</li></ul>
+<hr>
+<h3>09. ОСТАНОВКА</h3><p>Во время движения:</p><p class="command">«СТОЙ!»</p><p>После остановки:</p><p class="command">«РАВНЯЙСЬ!»<br>«СМИРНО!»</p>
+<hr>
+<h3>10. «КОМАНДИР»</h3><p>Инструктор неожиданно даёт команды:</p><p class="command">«СТОЙ!» → «КРУ-ГОМ!» → «МАРШ!»</p><p>Задача: быстро выполнить команду и не нарушить строй.</p>
+<hr>
+<h3>14. «КОЛОННА ПО ТРИ»</h3>
+<h4>1. Построение в одну шеренгу</h4><p>После завершения предыдущего этапа личный состав выстраивается в одну шеренгу.</p>
+<h4>2. Движение по периметру</h4><p>Команда: <span class="command">«Напра-ВО! По периметру квадрата, шагом — МАРШ!»</span></p><p>Личный состав начинает движение по периметру квадрата до места проведения вечернего построения.</p><p>По прибытии на установленное место подаётся команда:</p><p class="command">«СТОЙ!»</p>
+<h4>3. Построение перед руководителем</h4><p>Команда:</p><p class="command">«Напра-ВО!»</p><p class="command">«В одну шеренгу, передо мной, по линии — СТАНОВИСЬ!»</p><p>После построения:</p><p class="command">«ПОПРАВИТСЯ!»<br>«РАВНЯЙСЬ!»<br>«СМИРНО!»</p>
+<h4>4. Расчёт</h4><p>Команда:</p><p class="command">«На первый, второй, третий — РАССЧИТАЙСЬ!»</p><p>После расчёта:</p><ul><li>третьи номера делают два шага вперёд;</li><li>вторые номера делают один шаг вперёд;</li><li>первые номера остаются на месте.</li></ul>
+<h4>5. Перестроение в колонну по три</h4><p>Команда:</p><p class="command">«Нале-ВО!»</p><p>Затем:</p><p class="command">«В колонну по три — СТАНОВИСЬ!»</p><p>После завершения перестроения:</p><p class="command">«ПОПРАВИТЬСЯ»<br>«РАВНЯЙСЬ!»<br>«СМИРНО!»</p>
+<h4>6. Вывод первой шеренги</h4><p>Команда:</p><p class="command">«Первая шеренга, напра-ВО!»<br>«В исходное положение в одну шеренгу — СТАНОВИСЬ!»</p><p>(И так со всеми остальными пока не построиться в одну шеренгу)</p>
+</div></div></div>
+</div>
+</section>
+</main>
+
+<footer>РМП / Военный комиссариат · Информационный портал · Адаптивная версия для ПК и мобильных устройств</footer>
+<button class="topbtn" id="topbtn" aria-label="Наверх">↑</button>
+<script>
+const navBar=document.querySelector('.nav');
+addEventListener('scroll',()=>navBar.classList.toggle('scrolled',scrollY>70));
+const links=document.getElementById('navlinks');
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>{document.querySelectorAll('.navlinks a').forEach(x=>x.classList.remove('active'));a.classList.add('active')}));
+const sections=[...document.querySelectorAll('main section')], nav=[...document.querySelectorAll('.navlinks a')];
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){nav.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}});
+},{rootMargin:'-35% 0px -55% 0px',threshold:0});
+sections.forEach(s=>obs.observe(s));
+const top=document.getElementById('topbtn');
+addEventListener('scroll',()=>top.classList.toggle('show',scrollY>500));
+top.onclick=()=>scrollTo({top:0,behavior:'smooth'});
+</script>
+<script>
+(() => {
+  const slides = [...document.querySelectorAll('.hero-slide')];
+  const dots = [...document.querySelectorAll('.slider-dot')];
+  const progress = document.querySelector('.slider-progress');
+  if (!slides.length) return;
+  let index = 0;
+  let timer;
+
+  function showSlide(next) {
+    index = (next + slides.length) % slides.length;
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+      dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+    });
+    progress.classList.remove('playing');
+    void progress.offsetWidth;
+    progress.classList.add('playing');
+  }
+
+  function start() {
+    clearInterval(timer);
+    timer = setInterval(() => showSlide(index + 1), 5000);
+  }
+
+  dots.forEach((dot, i) => dot.addEventListener('click', () => {
+    showSlide(i);
+    start();
+  }));
+
+  showSlide(0);
+  start();
+})();
+</script>
+
+<script>
+(() => {
+  const tabs = [...document.querySelectorAll('.drill-tab')];
+  const lecture = document.getElementById('drill-lecture');
+  const practice = document.getElementById('drill-practice');
+  if (!tabs.length || !lecture || !practice) return;
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    const isPractice = tab.dataset.target === 'practice';
+    tabs.forEach(t => {
+      const active = t === tab;
+      t.classList.toggle('active', active);
+      t.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    lecture.hidden = isPractice;
+    practice.hidden = !isPractice;
+  }));
+})();
+</script>
+</body>
+</html>
